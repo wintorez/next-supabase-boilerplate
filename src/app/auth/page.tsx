@@ -11,8 +11,7 @@ export default function AuthPage() {
           <KeyRound />
           <h1 className="text-2xl font-bold">Next + Supabase</h1>
         </div>
-        <p className="text-sm text-green-300">Register/SignIn Today 👇</p>
-
+        <p className="text-sm text-gray-300">Register/SignIn Today 👇</p>
         <div className="flex flex-col gap-5">
           <Button className="flex items-center gap-2 w-full" variant="outline">
             <FaGithub /> Github
