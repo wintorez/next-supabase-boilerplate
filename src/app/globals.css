@@ -134,3 +134,16 @@
     0 0 100px 60px #f0f,
     0 0 140px 90px #0ff;
 }
+
+@theme {
+  --animate-fade: fade 1s linear forwards;
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
