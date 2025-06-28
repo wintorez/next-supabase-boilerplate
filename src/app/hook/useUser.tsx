@@ -1,12 +1,12 @@
 import { supabaseBrowser } from '@/lib/supabase/browser'
 import { useQuery } from '@tanstack/react-query'
 
-const initUser = {
+const emptyUser = {
   created_at: '',
-  display_name: '',
+  full_name: '',
   email: '',
   id: '',
-  image_url: '',
+  avatar_url: '',
 }
 
 export default function useUser() {
@@ -15,19 +15,18 @@ export default function useUser() {
     queryFn: async () => {
       const supabase = supabaseBrowser()
       const { data } = await supabase.auth.getSession()
-      console.log(data)
 
       if (data.session?.user) {
-        // fetch user profile
-        const { data: user } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', data.session.user.id)
-          .single()
-        return user
+        return {
+          created_at: data.session.user.created_at,
+          full_name: data.session.user.user_metadata.full_name,
+          email: data.session.user.email,
+          id: data.session.user.id,
+          avatar_url: data.session.user.user_metadata.avatar_url,
+        }
       }
 
-      return initUser
+      return emptyUser
     },
   })
 }
